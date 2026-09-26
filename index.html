@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FreshFind — Fresh All Along</title>
+    <meta
+      name="description"
+      content="Explore selected produce markets and commonly traded foods in Nigeria, Ghana, Kenya, and South Africa. Confirm current stock and trader hours locally."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧺</text></svg>"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#/home" class="brand" aria-label="FreshFind Home">
+          <span class="brand-icon" aria-hidden="true">🧺</span>
+          <span class="brand-text"
+            >FreshFind<small>Fresh All Along</small></span
+          >
+        </a>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="#/home">Home</a>
+          <a href="#/directory">Market Directory</a>
+          <a href="#/produce">Produce Guide</a>
+          <a href="#/contact">Contact Us</a>
+          <a href="#/about">About Us</a>
+        </nav>
+
+        <div class="header-actions">
+          <div
+            class="live-clock"
+            id="liveClock"
+            title="Current local time"
+            aria-live="off"
+          ></div>
+          <button
+            class="icon-btn"
+            id="bookmarksBtn"
+            aria-haspopup="dialog"
+            title="View bookmarks"
+          >
+            ⭐ <span id="bookmarkCount" class="badge">0</span>
+          </button>
+        </div>
+      </div>
+      <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
+    </header>
+
+    <main id="main-content">
+      <div id="app-content"><!-- Router renders views here --></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <strong>FreshFind</strong> — Fresh All Along<br />
+          <span class="muted"
+            >A community farmers-market discovery project.</span
+          >
+        </div>
+        <div
+          class="visitor-counter"
+          id="visitorCounter"
+          aria-live="polite"
+        ></div>
+      </div>
+      <div class="footer-bottom muted">
+        © <span id="footerYear"></span> FreshFind. Demo project — no data leaves
+        your browser.
+      </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <button
+      class="chatbot-launcher"
+      id="chatbotLauncher"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      aria-label="Open FreshFind chat assistant"
+    >
+      🤖
+    </button>
+    <section
+      class="chatbot-panel"
+      id="chatbotPanel"
+      role="dialog"
+      aria-label="FreshFind chat assistant"
+      hidden
+    >
+      <header class="chatbot-header">
+        <span>🤖 FreshFind Assistant</span>
+        <button id="chatbotClose" aria-label="Close chat">✕</button>
+      </header>
+      <div class="chatbot-messages" id="chatbotMessages"></div>
+      <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+      <form class="chatbot-input" id="chatbotForm">
+        <input
+          type="text"
+          id="chatbotInput"
+          placeholder="Ask a question…"
+          autocomplete="off"
+          aria-label="Type your question"
+        />
+        <button type="submit">➤</button>
+      </form>
+    </section>
+
+    <!-- Bookmarks Drawer -->
+    <section
+      class="drawer"
+      id="bookmarksDrawer"
+      role="dialog"
+      aria-label="Your bookmarks"
+      hidden
+    >
+      <header class="drawer-header">
+        <span>⭐ Your Bookmarks</span>
+        <button id="bookmarksClose" aria-label="Close bookmarks">✕</button>
+      </header>
+      <div class="drawer-actions">
+        <button id="exportBookmarksBtn" class="btn-small">
+          Export as list
+        </button>
+      </div>
+      <div class="drawer-body" id="bookmarksList"></div>
+    </section>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,266 @@
+[
+  {
+    "id": "yam",
+    "name": "Yam",
+    "category": "Roots & Tubers",
+    "season": "Year-round; supply varies by region",
+    "icon": "🍠",
+    "description": "Fresh yam tubers, a staple sold in markets across many parts of Nigeria."
+  },
+  {
+    "id": "cassava",
+    "name": "Cassava",
+    "category": "Roots & Tubers",
+    "season": "Year-round",
+    "icon": "🌱",
+    "description": "Cassava roots used for garri, fufu, and other everyday foods."
+  },
+  {
+    "id": "cocoyam",
+    "name": "Cocoyam",
+    "category": "Roots & Tubers",
+    "season": "Seasonal; varies by region",
+    "icon": "🥔",
+    "description": "Cocoyam corms and leaves used in soups and traditional dishes."
+  },
+  {
+    "id": "garri",
+    "name": "Garri",
+    "category": "Grains & Pantry",
+    "season": "Year-round",
+    "icon": "🥣",
+    "description": "Cassava granules sold in different textures and colours for soaking or cooking."
+  },
+  {
+    "id": "plantain",
+    "name": "Plantain",
+    "category": "Fruits",
+    "season": "Year-round; supply varies by region",
+    "icon": "🍌",
+    "description": "Green and ripe plantain for frying, roasting, boiling, and local dishes."
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "category": "Fruits",
+    "season": "Seasonal; availability varies",
+    "icon": "🍌",
+    "description": "Fresh bananas from local growers and produce traders."
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "category": "Fruits",
+    "season": "Seasonal; availability varies",
+    "icon": "🍍",
+    "description": "Whole fresh pineapples, with varieties and supply changing by season."
+  },
+  {
+    "id": "mango",
+    "name": "Mango",
+    "category": "Fruits",
+    "season": "Seasonal; commonly abundant in the dry season",
+    "icon": "🥭",
+    "description": "Sweet local mangoes when in season; availability differs across regions."
+  },
+  {
+    "id": "pawpaw",
+    "name": "Pawpaw",
+    "category": "Fruits",
+    "season": "Year-round in many regions",
+    "icon": "🍈",
+    "description": "Ripe and unripe pawpaw sold for eating fresh or cooking."
+  },
+  {
+    "id": "tomatoes",
+    "name": "Tomatoes",
+    "category": "Vegetables",
+    "season": "Year-round; prices and supply vary",
+    "icon": "🍅",
+    "description": "Fresh tomatoes for stews, sauces, and everyday cooking."
+  },
+  {
+    "id": "pepper",
+    "name": "Fresh Pepper",
+    "category": "Vegetables",
+    "season": "Year-round; varieties vary",
+    "icon": "🌶️",
+    "description": "Fresh peppers, including hot varieties used in Nigerian cooking."
+  },
+  {
+    "id": "onions",
+    "name": "Onions",
+    "category": "Vegetables",
+    "season": "Year-round",
+    "icon": "🧅",
+    "description": "Red and white onions sold loose or in sacks, depending on the market."
+  },
+  {
+    "id": "okra",
+    "name": "Okra",
+    "category": "Vegetables",
+    "season": "Seasonal; supply varies by region",
+    "icon": "🥬",
+    "description": "Fresh okra for soups and stews."
+  },
+  {
+    "id": "ugu",
+    "name": "Ugu (Fluted Pumpkin Leaves)",
+    "category": "Vegetables",
+    "season": "Year-round in many southern markets",
+    "icon": "🥬",
+    "description": "Ugu leaves commonly used in soups and vegetable dishes."
+  },
+  {
+    "id": "waterleaf",
+    "name": "Waterleaf",
+    "category": "Vegetables",
+    "season": "Year-round in many southern markets",
+    "icon": "🌿",
+    "description": "Tender waterleaf sold fresh for soups and stews."
+  },
+  {
+    "id": "bitterleaf",
+    "name": "Bitterleaf",
+    "category": "Vegetables",
+    "season": "Year-round; fresh or dried",
+    "icon": "🍃",
+    "description": "Fresh or processed bitterleaf used in regional soups."
+  },
+  {
+    "id": "palm-oil",
+    "name": "Palm Oil",
+    "category": "Oils & Pantry",
+    "season": "Year-round",
+    "icon": "🫙",
+    "description": "Red palm oil sold in measured quantities and larger containers."
+  },
+  {
+    "id": "fresh-fish",
+    "name": "Fresh Fish",
+    "category": "Fish & Seafood",
+    "season": "Availability varies by catch and location",
+    "icon": "🐟",
+    "description": "Fresh fish sold at markets supplied by coastal and inland fisheries."
+  },
+  {
+    "id": "dried-fish",
+    "name": "Dried Fish",
+    "category": "Fish & Seafood",
+    "season": "Year-round",
+    "icon": "🐠",
+    "description": "Smoked and dried fish used to add flavour to soups and stews."
+  },
+  {
+    "id": "crayfish",
+    "name": "Crayfish",
+    "category": "Fish & Seafood",
+    "season": "Year-round; supply varies",
+    "icon": "🦐",
+    "description": "Dried crayfish sold whole or ground as a cooking ingredient."
+  },
+  {
+    "id": "periwinkle",
+    "name": "Periwinkle",
+    "category": "Fish & Seafood",
+    "season": "Availability varies by coastal market",
+    "icon": "🐚",
+    "description": "Fresh or prepared periwinkle commonly used in Niger Delta dishes."
+  },
+  {
+    "id": "beans",
+    "name": "Beans",
+    "category": "Grains & Pantry",
+    "season": "Year-round",
+    "icon": "🫘",
+    "description": "Beans sold in bulk or smaller measures for meals such as moi moi and akara."
+  },
+  {
+    "id": "rice",
+    "name": "Rice",
+    "category": "Grains & Pantry",
+    "season": "Year-round",
+    "icon": "🍚",
+    "description": "Locally produced and imported rice sold in bags or smaller quantities."
+  },
+  {
+    "id": "maize",
+    "name": "Maize",
+    "category": "Grains & Pantry",
+    "season": "Seasonal harvest; dried stock year-round",
+    "icon": "🌽",
+    "description": "Fresh or dried maize, depending on the season and market."
+  },
+  {
+    "id": "egusi",
+    "name": "Egusi",
+    "category": "Grains & Pantry",
+    "season": "Year-round",
+    "icon": "🥣",
+    "description": "Melon seeds sold whole or ground for soups."
+  },
+  {
+    "id": "grapes",
+    "name": "Grapes",
+    "category": "Fruits",
+    "season": "Seasonal; supply varies by source",
+    "icon": "🍇",
+    "description": "Fresh grapes, including imported varieties; check the market for current origin and availability."
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "category": "Fruits",
+    "season": "Seasonal; availability varies by region",
+    "icon": "🍉",
+    "description": "Whole fresh watermelon sourced from local and regional growers when in season."
+  },
+  {
+    "id": "apple",
+    "name": "Apples",
+    "category": "Fruits",
+    "season": "Year-round in many markets; origin varies",
+    "icon": "🍎",
+    "description": "Fresh apples sold by piece or in packs; varieties and country of origin vary."
+  },
+  {
+    "id": "pear",
+    "name": "Pears",
+    "category": "Fruits",
+    "season": "Seasonal; supply varies by source",
+    "icon": "🍐",
+    "description": "Fresh pears, including imported varieties; check the market for current origin and availability."
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "category": "Fruits",
+    "season": "Seasonal; varies by growing region",
+    "icon": "🥑",
+    "description": "Fresh avocados from local and regional growers, with availability changing through the year."
+  },
+  {
+    "id": "potatoes",
+    "name": "Potatoes",
+    "category": "Vegetables",
+    "season": "Year-round; supply varies by region",
+    "icon": "🥔",
+    "description": "Fresh potatoes sold for household cooking and food service."
+  },
+  {
+    "id": "cabbage",
+    "name": "Cabbage",
+    "category": "Vegetables",
+    "season": "Year-round; supply varies by region",
+    "icon": "🥬",
+    "description": "Whole fresh cabbages supplied by local and regional growers."
+  },
+  {
+    "id": "citrus",
+    "name": "Citrus Fruit",
+    "category": "Fruits",
+    "season": "Seasonal; varies by region",
+    "icon": "🍊",
+    "description": "Citrus fruit such as oranges and mandarins, depending on season and source."
+  }
+]

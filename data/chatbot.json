@@ -1,0 +1,107 @@
+{
+  "greeting": "Hi! Ask me about markets and commonly traded foods in Nigeria, Ghana, Kenya, and South Africa. Stock, prices, and hours are not live-verified.",
+  "fallback": "I don't have that listing yet. Try a market name, state, or food item, or browse the Market Directory and Produce Guide.",
+  "quickReplies": [
+    "Which markets are listed in Ghana?",
+    "Where can I buy apples?",
+    "What does Wakulima Market sell?",
+    "How do I bookmark a market?"
+  ],
+  "intents": [
+    {
+      "keywords": [
+        "open today",
+        "open now",
+        "open right now",
+        "which markets are open",
+        "opening hours",
+        "market hours"
+      ],
+      "answer": "FreshFind does not have verified live opening hours. Trading days and hours vary by trader, so please confirm with the market before travelling.",
+      "link": { "label": "Go to Market Directory", "hash": "#/directory" }
+    },
+    {
+      "keywords": [
+        "rivers state",
+        "port harcourt",
+        "fruit garden",
+        "oil mill",
+        "mile 3",
+        "creek road"
+      ],
+      "answer": "Rivers State listings include Fruit Garden Market, Oil Mill Market, Mile 3 Market, and Creek Road Market in Port Harcourt. The directory lists commonly traded foods; current stock is not live-verified.",
+      "link": {
+        "label": "See Rivers State markets",
+        "hash": "#/directory?state=Rivers%20State"
+      }
+    },
+    {
+      "keywords": ["plantain", "banana"],
+      "answer": "Plantain and banana are listed at several markets, including Fruit Garden Market in Port Harcourt. Availability varies by trader and season.",
+      "link": { "label": "See plantain listings", "hash": "#/produce/plantain" }
+    },
+    {
+      "keywords": ["fish", "seafood", "crayfish", "periwinkle"],
+      "answer": "FreshFind lists fish and seafood at several markets, including Mile 3 and Creek Road in Port Harcourt. Check with traders for current catch and availability.",
+      "link": { "label": "See fresh fish", "hash": "#/produce/fresh-fish" }
+    },
+    {
+      "keywords": ["yam", "cassava", "garri"],
+      "answer": "Yam, cassava, and garri are listed at markets in Rivers, Oyo, Enugu, Edo, and other locations. Use the product filter to narrow the directory.",
+      "link": { "label": "See yam listings", "hash": "#/produce/yam" }
+    },
+    {
+      "keywords": ["tomato", "pepper", "onion"],
+      "answer": "Tomatoes, fresh pepper, and onions are listed at markets including Mile 12 in Lagos and several other state markets. Stock varies day to day.",
+      "link": { "label": "See tomato listings", "hash": "#/produce/tomatoes" }
+    },
+    {
+      "keywords": ["palm oil", "palm-oil"],
+      "answer": "Palm oil is listed at Oil Mill Market, Ogbete Main Market, Onitsha Main Market, and New Benin Market. Confirm availability and price locally.",
+      "link": { "label": "See palm oil listings", "hash": "#/produce/palm-oil" }
+    },
+    {
+      "keywords": ["lagos", "mile 12"],
+      "answer": "Mile 12 International Market in Lagos is listed for vegetables, fruit, roots and tubers, and other food staples.",
+      "link": {
+        "label": "View Mile 12 listings",
+        "hash": "#/market/mile-12-lagos"
+      }
+    },
+    {
+      "keywords": ["state", "which markets", "other markets"],
+      "answer": "The directory includes selected markets in Rivers, Lagos, Oyo, Enugu, Anambra, Kano, Kaduna, Edo, and the FCT. Filter by state to browse.",
+      "link": { "label": "Browse by state", "hash": "#/directory" }
+    },
+    {
+      "keywords": ["bookmark", "favorite", "favourite", "save"],
+      "answer": "Tap the ☆ icon on any market card or produce item to bookmark it. You can view, export, or share your bookmarks from the Bookmarks panel in the header.",
+      "link": null
+    },
+    {
+      "keywords": ["contact", "address", "reach you", "phone", "email"],
+      "answer": "You can find our contact details and location on the Contact Us page.",
+      "link": { "label": "Go to Contact Us", "hash": "#/contact" }
+    },
+    {
+      "keywords": ["about", "who runs", "who made", "team"],
+      "answer": "FreshFind is a community project connecting residents with local farmers markets — more on the About Us page.",
+      "link": { "label": "Go to About Us", "hash": "#/about" }
+    },
+    {
+      "keywords": ["near me", "nearest", "closest", "proximity"],
+      "answer": "Allow location access on the Market Directory page and sort by 'Proximity' to see the closest markets to you.",
+      "link": { "label": "Go to Market Directory", "hash": "#/directory" }
+    },
+    {
+      "keywords": ["hello", "hi", "hey"],
+      "answer": "Hello! Ask me about Nigerian markets, states, or commonly traded foods.",
+      "link": null
+    },
+    {
+      "keywords": ["thank", "thanks"],
+      "answer": "You're welcome! Happy market hunting. 🧺",
+      "link": null
+    }
+  ]
+}
