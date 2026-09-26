@@ -35,7 +35,9 @@ freshfind/
 ├── index.html          Single HTML shell; all views render into #app-content
 ├── css/style.css        All styling (responsive, no CSS framework)
 ├── js/app.js            Router, state, rendering, chatbot, widgets
-├── data/markets.json     18 selected markets across Nigeria, Ghana, Kenya, and South Africa
+├── data/markets.json     Selected markets in Nigeria, Ghana, Kenya, and South Africa
+├── data/nigeria-markets.json  Markets filling state coverage gaps
+├── data/nigeria-market-expansion.json  Additional markets across Nigerian states
 ├── data/produce.json     33 foods and fruits with category/availability/description
 └── data/chatbot.json     Pre-scripted rule-based Q&A dataset for the chatbot
 ```
@@ -64,10 +66,12 @@ freshfind/
 
 ## Assumptions made
 
-- Listings include selected markets in Nigeria, Ghana, Kenya, and South Africa.
-  Goods are representative market listings, not live vendor inventories. Stock,
-  prices, and trader hours are not verified; confirm locally before travelling.
-  Coordinates are approximate and used for proximity sorting and map display.
+- Listings include markets across all 36 Nigerian states and the FCT, plus
+  selected markets in Ghana, Kenya, and South Africa. Each market has a
+  representative produce list, and produce searches show markets listing that
+  item. Listings are not verified live inventories; stock, prices, and trader
+  hours vary, so confirm locally before travelling. Coordinates are approximate
+  and used for proximity sorting and map display.
 - No product photography is bundled (keeps the project dependency-free and
   avoids third-party image licensing); each market/produce card uses a
   representative emoji icon instead, styled as a card graphic.

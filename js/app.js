@@ -4,6 +4,210 @@
    ========================================================= */
 
 const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const FRUIT_PRODUCE_IDS = [
+  "plantain",
+  "banana",
+  "pineapple",
+  "mango",
+  "pawpaw",
+  "grapes",
+  "watermelon",
+  "apple",
+  "pear",
+  "avocado",
+  "citrus",
+];
+
+const MARKET_REGIONS = {
+  south: new Set([
+    "Abia State",
+    "Akwa Ibom State",
+    "Anambra State",
+    "Bayelsa State",
+    "Cross River State",
+    "Delta State",
+    "Edo State",
+    "Ekiti State",
+    "Enugu State",
+    "Imo State",
+    "Lagos State",
+    "Ogun State",
+    "Ondo State",
+    "Osun State",
+    "Oyo State",
+    "Rivers State",
+  ]),
+  north: new Set([
+    "Adamawa State",
+    "Bauchi State",
+    "Borno State",
+    "Gombe State",
+    "Jigawa State",
+    "Kaduna State",
+    "Kano State",
+    "Katsina State",
+    "Kebbi State",
+    "Sokoto State",
+    "Taraba State",
+    "Yobe State",
+    "Zamfara State",
+  ]),
+  central: new Set([
+    "Benue State",
+    "FCT",
+    "Kogi State",
+    "Kwara State",
+    "Nasarawa State",
+    "Niger State",
+    "Plateau State",
+  ]),
+};
+
+const REGIONAL_MARKET_PRODUCE = {
+  south: {
+    fresh: [
+      ...FRUIT_PRODUCE_IDS,
+      "tomatoes",
+      "pepper",
+      "onions",
+      "okra",
+      "ugu",
+      "waterleaf",
+      "yam",
+      "cassava",
+      "rice",
+      "beans",
+    ],
+    staples: [
+      "plantain",
+      "mango",
+      "watermelon",
+      "yam",
+      "cassava",
+      "cocoyam",
+      "garri",
+      "tomatoes",
+      "pepper",
+      "onions",
+      "ugu",
+      "bitterleaf",
+      "palm-oil",
+      "fresh-fish",
+      "dried-fish",
+      "crayfish",
+      "periwinkle",
+      "beans",
+      "rice",
+      "egusi",
+    ],
+  },
+  north: {
+    fresh: [
+      ...FRUIT_PRODUCE_IDS,
+      "tomatoes",
+      "pepper",
+      "onions",
+      "okra",
+      "potatoes",
+      "cabbage",
+      "yam",
+      "beans",
+      "rice",
+    ],
+    staples: [
+      "banana",
+      "mango",
+      "watermelon",
+      "citrus",
+      "yam",
+      "cassava",
+      "garri",
+      "tomatoes",
+      "pepper",
+      "onions",
+      "okra",
+      "dried-fish",
+      "fresh-fish",
+      "beans",
+      "rice",
+      "maize",
+      "egusi",
+    ],
+  },
+  central: {
+    fresh: [
+      ...FRUIT_PRODUCE_IDS,
+      "tomatoes",
+      "pepper",
+      "onions",
+      "okra",
+      "cabbage",
+      "potatoes",
+      "yam",
+      "cassava",
+      "beans",
+      "rice",
+    ],
+    staples: [
+      "plantain",
+      "mango",
+      "watermelon",
+      "yam",
+      "cassava",
+      "garri",
+      "tomatoes",
+      "pepper",
+      "onions",
+      "okra",
+      "dried-fish",
+      "fresh-fish",
+      "beans",
+      "rice",
+      "maize",
+      "egusi",
+    ],
+  },
+};
+
+function marketProduceProfile(stateName, profile) {
+  const region =
+    Object.entries(MARKET_REGIONS).find(([, states]) =>
+      states.has(stateName),
+    )?.[0] || "central";
+  return REGIONAL_MARKET_PRODUCE[region][profile];
+}
+
+function fillStateProduceCoverage(markets, produce) {
+  const listings = markets.map((market) => ({
+    ...market,
+    produce: [...(market.produce || [])],
+  }));
+  const byState = new Map();
+
+  listings
+    .filter((market) => marketCountry(market) === "Nigeria")
+    .forEach((market) => {
+      const group = byState.get(market.state) || [];
+      group.push(market);
+      byState.set(market.state, group);
+    });
+
+  byState.forEach((stateMarkets) => {
+    const represented = new Set(
+      stateMarkets.flatMap((market) => market.produce),
+    );
+    const missing = produce.filter((item) => !represented.has(item.id));
+
+    missing.forEach((item) => {
+      const target = stateMarkets.reduce((shortest, market) =>
+        market.produce.length < shortest.produce.length ? market : shortest,
+      );
+      target.produce.push(item.id);
+    });
+  });
+
+  return listings;
+}
 
 const state = {
   markets: [],
@@ -16,12 +220,37 @@ const state = {
 
 /* ---------------- Data loading ---------------- */
 async function loadData() {
-  const [markets, produce, chatbot] = await Promise.all([
-    fetch("data/markets.json").then((r) => r.json()),
-    fetch("data/produce.json").then((r) => r.json()),
-    fetch("data/chatbot.json").then((r) => r.json()),
-  ]);
-  state.markets = markets;
+  const [markets, produce, chatbot, nigeriaMarkets, marketExpansion] =
+    await Promise.all([
+      fetch("data/markets.json").then((r) => r.json()),
+      fetch("data/produce.json").then((r) => r.json()),
+      fetch("data/chatbot.json").then((r) => r.json()),
+      fetch("data/nigeria-markets.json").then((r) => r.json()),
+      fetch("data/nigeria-market-expansion.json").then((r) => r.json()),
+    ]);
+  const listedNigeriaMarkets = nigeriaMarkets.map((market) => ({
+    ...market,
+    produce: marketProduceProfile(market.state, "fresh"),
+  }));
+  const additionalMarkets = marketExpansion.flatMap(
+    ({ state: stateName, markets: entries }) =>
+      entries.map((market, index) => ({
+        ...market,
+        state: stateName,
+        address: `${market.name}, ${market.city}, ${stateName}, Nigeria`,
+        hoursNote: "Trading days and hours vary by trader; confirm locally.",
+        description: `${market.name} is a local food market. FreshFind listings are a guide; seasonal availability and trader stock vary.`,
+        country: "Nigeria",
+        produce: marketProduceProfile(
+          stateName,
+          index === 0 ? "fresh" : "staples",
+        ),
+      })),
+  );
+  state.markets = fillStateProduceCoverage(
+    [...markets, ...listedNigeriaMarkets, ...additionalMarkets],
+    produce,
+  );
   state.produce = produce;
   state.chatbot = chatbot;
 }
@@ -252,7 +481,7 @@ function renderHome() {
   <section class="hero">
     <div>
       <h1>Find fresh markets across Africa.</h1>
-      <p class="lead">Explore selected produce markets in Nigeria, Ghana, Kenya, and South Africa. Listings show commonly traded goods; confirm current stock and trader hours locally.</p>
+      <p class="lead">Explore produce markets across all 36 Nigerian states and the FCT, plus selected cities in Ghana, Kenya, and South Africa. Listings are a guide; confirm current stock and trader hours locally.</p>
       <div class="tag-row">
         <span class="tag" style="background:rgba(255,255,255,0.15);color:#fff;">${state.markets.length} markets listed</span>
         <span class="tag" style="background:rgba(255,255,255,0.15);color:#fff;">${countryCount} countries</span>
@@ -704,102 +933,211 @@ function renderQuickReplies() {
     .join("");
 }
 
+function normalizeChatText(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function hasChatPhrase(query, phrase) {
+  const normalizedPhrase = normalizeChatText(phrase);
+  return normalizedPhrase && ` ${query} `.includes(` ${normalizedPhrase} `);
+}
+
 function matchIntent(text) {
-  const lower = text.toLowerCase();
-  for (const intent of state.chatbot.intents) {
-    if (intent.keywords.some((k) => lower.includes(k))) return intent;
-  }
-  return null;
+  const query = normalizeChatText(text);
+  const matches = state.chatbot.intents.flatMap((intent) =>
+    intent.keywords
+      .filter((keyword) => hasChatPhrase(query, keyword))
+      .map((keyword) => ({ intent, keyword })),
+  );
+  return matches.sort((a, b) => b.keyword.length - a.keyword.length)[0]?.intent;
 }
 
 function getChatbotResponse(text) {
-  const query = text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  const query = normalizeChatText(text);
+  const hoursIntent = state.chatbot.intents.find(
+    (intent) =>
+      intent.type === "hours" &&
+      intent.keywords.some((keyword) => hasChatPhrase(query, keyword)),
+  );
+  if (hoursIntent)
+    return { answer: hoursIntent.answer, link: hoursIntent.link };
+  const liveDataIntent = state.chatbot.intents.find(
+    (intent) =>
+      intent.type === "live_data" &&
+      intent.keywords.some((keyword) => hasChatPhrase(query, keyword)),
+  );
+  if (liveDataIntent)
+    return { answer: liveDataIntent.answer, link: liveDataIntent.link };
+
   const market = [...state.markets]
     .sort((a, b) => b.name.length - a.name.length)
     .find(
-      (m) =>
-        query.includes(m.name.toLowerCase()) ||
-        query.includes(m.id.replace(/-/g, " ")),
+      (item) =>
+        hasChatPhrase(query, item.name) ||
+        hasChatPhrase(query, item.id.replace(/-/g, " ")),
     );
+  const stateNames = [...new Set(state.markets.map((item) => item.state))].sort(
+    (a, b) => b.length - a.length,
+  );
+  const matchedState = stateNames.find((name) => {
+    const shortName = name.replace(/\s+State$/i, "");
+    return (
+      hasChatPhrase(query, name) ||
+      (shortName.length > 3 && hasChatPhrase(query, shortName))
+    );
+  });
+  const matchedCity = [
+    ...new Set(
+      state.markets.flatMap((item) =>
+        item.city.split(",").map((city) => city.trim()),
+      ),
+    ),
+  ]
+    .sort((a, b) => b.length - a.length)
+    .find((city) => city.length > 2 && hasChatPhrase(query, city));
+  const matchedCountry = [...new Set(state.markets.map(marketCountry))]
+    .sort((a, b) => b.length - a.length)
+    .find((country) => hasChatPhrase(query, country));
+
+  const aliases = {
+    apples: ["apple"],
+    avocado: ["avocados"],
+    banana: ["bananas"],
+    beans: ["bean"],
+    cabbage: ["cabbages"],
+    citrus: ["orange", "oranges", "mandarin", "mandarins"],
+    grapes: ["grape"],
+    mango: ["mangoes", "mangos"],
+    onions: ["onion"],
+    "palm-oil": ["palm oil"],
+    pawpaw: ["pawpaws", "papaya", "papayas"],
+    pear: ["pears"],
+    pepper: ["fresh pepper", "peppers"],
+    pineapple: ["pineapples"],
+    plantain: ["plantains"],
+    potatoes: ["potato"],
+    tomatoes: ["tomato"],
+    ugu: ["ugu leaves", "fluted pumpkin", "fluted pumpkin leaves"],
+    watermelon: ["watermelons"],
+    waterleaf: ["waterleaf leaves"],
+  };
+  const matchedItems = state.produce.filter((item) =>
+    [item.name, item.id.replace(/-/g, " "), ...(aliases[item.id] || [])].some(
+      (phrase) => hasChatPhrase(query, phrase),
+    ),
+  );
+
+  const categoryAliases = {
+    Fruits: ["fruit", "fruits"],
+    Vegetables: ["vegetable", "vegetables"],
+    "Roots & Tubers": ["root", "roots", "tuber", "tubers"],
+    "Grains & Pantry": ["grain", "grains", "pantry", "staples"],
+    "Oils & Pantry": ["oils", "cooking oils"],
+    "Fish & Seafood": ["fish", "seafood"],
+  };
+  const matchedCategories = Object.entries(categoryAliases)
+    .filter(([, phrases]) =>
+      phrases.some((phrase) => hasChatPhrase(query, phrase)),
+    )
+    .map(([category]) => category);
+  const categoryItems = state.produce.filter((item) =>
+    matchedCategories.includes(item.category),
+  );
+  const requestedItems = matchedCategories.length
+    ? categoryItems
+    : matchedItems;
+  const requestedItemIds = requestedItems.map((item) => item.id);
+  const locationLabel = matchedState || matchedCity || matchedCountry;
+  const scopedMarkets = state.markets.filter((item) => {
+    if (matchedState && item.state !== matchedState) return false;
+    if (
+      !matchedState &&
+      matchedCity &&
+      !item.city.split(",").some((city) => city.trim() === matchedCity)
+    ) {
+      return false;
+    }
+    if (matchedCountry && marketCountry(item) !== matchedCountry) return false;
+    return true;
+  });
+
+  let matchingMarkets = scopedMarkets;
+  if (requestedItemIds.length) {
+    const useAnyItem =
+      matchedCategories.length > 0 || hasChatPhrase(query, "or");
+    matchingMarkets = scopedMarkets.filter((item) =>
+      useAnyItem
+        ? requestedItemIds.some((id) => item.produce.includes(id))
+        : requestedItemIds.every((id) => item.produce.includes(id)),
+    );
+  }
 
   if (market) {
-    const goods = produceForMarket(market).map((item) => item.name);
+    const marketItems = produceForMarket(market);
+    if (requestedItemIds.length) {
+      const listedRequestedItems = marketItems.filter((item) =>
+        requestedItemIds.includes(item.id),
+      );
+      const carriesRequestedItems = matchedCategories.length
+        ? listedRequestedItems.length > 0
+        : hasChatPhrase(query, "or")
+          ? listedRequestedItems.length > 0
+          : listedRequestedItems.length === requestedItemIds.length;
+      const names = requestedItems.map((item) => item.name).join(", ");
+      return {
+        answer: carriesRequestedItems
+          ? matchedCategories.length
+            ? `${market.name} lists these ${matchedCategories.join(" and ").toLowerCase()}: ${listedRequestedItems.map((item) => item.name).join(", ")}. Availability is not live-verified.`
+            : `${market.name} is listed as carrying ${names}. Listings are guides, not live stock; confirm with traders.`
+          : `FreshFind does not list ${names} at ${market.name}. Its listed goods are: ${marketItems.map((item) => item.name).join(", ")}.`,
+        link: { label: `View ${market.name}`, hash: `#/market/${market.id}` },
+      };
+    }
+
     return {
-      answer: `${market.name} is listed in ${market.city}, ${market.state}, ${marketCountry(market)}. FreshFind lists these commonly traded goods: ${goods.join(", ")}. ${market.hoursNote || "Trading days and hours vary; confirm locally."}`,
+      answer: `${market.name} is listed in ${market.city}, ${market.state}, ${marketCountry(market)}. FreshFind lists these goods: ${marketItems.map((item) => item.name).join(", ")}. ${market.hoursNote || "Trading days and hours vary; confirm locally."}`,
       link: { label: `View ${market.name}`, hash: `#/market/${market.id}` },
     };
   }
 
-  const countries = [...new Set(state.markets.map(marketCountry))];
-  const matchedCountry = countries.find((name) =>
-    query.includes(name.toLowerCase()),
-  );
-  if (matchedCountry) {
-    const markets = state.markets.filter(
-      (m) => marketCountry(m) === matchedCountry,
-    );
-    return {
-      answer: `FreshFind lists these markets in ${matchedCountry}: ${markets.map((m) => m.name).join(", ")}. Listings show commonly traded goods, not live stock, prices, or verified hours.`,
-      link: {
-        label: `Browse ${matchedCountry}`,
-        hash: `#/directory?country=${encodeURIComponent(matchedCountry)}`,
-      },
-    };
-  }
+  if (requestedItems.length || locationLabel) {
+    const itemLabel = matchedCategories.length
+      ? matchedCategories.join(" and ").toLowerCase()
+      : requestedItems.map((item) => item.name).join(", ");
+    const placeLabel = locationLabel ? ` in ${locationLabel}` : "";
+    if (!matchingMarkets.length) {
+      return {
+        answer: `FreshFind does not currently list ${itemLabel || "markets"}${placeLabel}. Try another item or location. Listings are not live inventory.`,
+        link: { label: "Browse the directory", hash: "#/directory" },
+      };
+    }
 
-  const states = [...new Set(state.markets.map((m) => m.state))];
-  const matchedState = states.find((name) => {
-    const shortName = name.replace(/\s+State$/i, "").toLowerCase();
-    return (
-      query.includes(name.toLowerCase()) ||
-      (shortName.length > 3 && query.includes(shortName))
-    );
-  });
-  if (matchedState) {
-    const markets = state.markets.filter((m) => m.state === matchedState);
+    const limit = 10;
+    const locations = matchingMarkets
+      .slice(0, limit)
+      .map((item) => `${item.name} (${item.city}, ${item.state})`);
+    const remaining = matchingMarkets.length - locations.length;
+    const link =
+      requestedItems.length && requestedItems.length === 1
+        ? {
+            label: `Browse ${requestedItems[0].name}`,
+            hash: `#/produce/${requestedItems[0].id}`,
+          }
+        : locationLabel
+          ? {
+              label: `Browse ${locationLabel}`,
+              hash: matchedState
+                ? `#/directory?state=${encodeURIComponent(matchedState)}`
+                : "#/directory",
+            }
+          : { label: "Browse produce", hash: "#/produce" };
     return {
-      answer: `FreshFind lists these markets in ${matchedState}: ${markets.map((m) => m.name).join(", ")}. Their listings show commonly traded goods, not live stock or verified hours.`,
-      link: {
-        label: `Browse ${matchedState}`,
-        hash: `#/directory?state=${encodeURIComponent(matchedState)}`,
-      },
-    };
-  }
-
-  const aliases = {
-    "ugu leaves": "ugu",
-    "fluted pumpkin": "ugu",
-    "palm oil": "palm-oil",
-    "fresh pepper": "pepper",
-  };
-  const aliasedId = Object.entries(aliases).find(([phrase]) =>
-    query.includes(phrase),
-  )?.[1];
-  const item = aliasedId
-    ? produceById(aliasedId)
-    : [...state.produce]
-        .sort((a, b) => b.name.length - a.name.length)
-        .find(
-          (p) =>
-            query.includes(p.name.toLowerCase()) ||
-            query.includes(p.id.replace(/-/g, " ")),
-        );
-
-  if (item) {
-    const markets = marketsForProduce(item.id);
-    const locations = markets.map(
-      (m) => `${m.name} (${m.city}, ${m.state}, ${marketCountry(m)})`,
-    );
-    const answer = markets.length
-      ? `${item.name}: ${item.description} FreshFind lists it at ${locations.join(", ")}. Availability is not live-verified; check with traders before travelling.`
-      : `${item.name}: ${item.description} FreshFind does not currently list a market carrying it.`;
-    return {
-      answer,
-      link: { label: `Browse ${item.name}`, hash: `#/produce/${item.id}` },
+      answer: `${itemLabel ? `${itemLabel}: ` : ""}FreshFind lists ${matchingMarkets.length} matching market${matchingMarkets.length === 1 ? "" : "s"}${placeLabel}: ${locations.join(", ")}${remaining ? `, and ${remaining} more` : ""}. Listings are not live stock; confirm availability with traders.`,
+      link,
     };
   }
 

@@ -1,14 +1,15 @@
 {
-  "greeting": "Hi! Ask me about markets and commonly traded foods in Nigeria, Ghana, Kenya, and South Africa. Stock, prices, and hours are not live-verified.",
-  "fallback": "I don't have that listing yet. Try a market name, state, or food item, or browse the Market Directory and Produce Guide.",
+  "greeting": "Hi! Ask which markets in a state list a food, what a specific market carries, or about FreshFind features. I can answer from directory listings, but I cannot verify live stock, prices, or hours.",
+  "fallback": "I couldn't match that to FreshFind's listings. Try a market, state, city, or produce name, such as 'Which markets in Lagos sell mango?' I can't verify live stock, prices, or hours.",
   "quickReplies": [
-    "Which markets are listed in Ghana?",
-    "Where can I buy apples?",
-    "What does Wakulima Market sell?",
+    "Which markets in Lagos sell mango?",
+    "Where can I buy apples in Kano?",
+    "Does Mile 12 carry plantain?",
     "How do I bookmark a market?"
   ],
   "intents": [
     {
+      "type": "hours",
       "keywords": [
         "open today",
         "open now",
@@ -19,6 +20,22 @@
       ],
       "answer": "FreshFind does not have verified live opening hours. Trading days and hours vary by trader, so please confirm with the market before travelling.",
       "link": { "label": "Go to Market Directory", "hash": "#/directory" }
+    },
+    {
+      "type": "live_data",
+      "keywords": [
+        "price",
+        "prices",
+        "cost",
+        "how much",
+        "current stock",
+        "live stock",
+        "in stock",
+        "available now",
+        "current availability"
+      ],
+      "answer": "FreshFind does not provide live prices or confirm current stock. Use the directory to find markets that list the item, then contact traders to check today's price and availability.",
+      "link": { "label": "Browse the Market Directory", "hash": "#/directory" }
     },
     {
       "keywords": [
@@ -69,8 +86,15 @@
       }
     },
     {
-      "keywords": ["state", "which markets", "other markets"],
-      "answer": "The directory includes selected markets in Rivers, Lagos, Oyo, Enugu, Anambra, Kano, Kaduna, Edo, and the FCT. Filter by state to browse.",
+      "keywords": [
+        "state",
+        "states",
+        "which states",
+        "states covered",
+        "which markets",
+        "other markets"
+      ],
+      "answer": "FreshFind lists markets in all 36 Nigerian states and the FCT, as well as selected markets in Ghana, Kenya, and South Africa. Use the directory filters to browse a specific location.",
       "link": { "label": "Browse by state", "hash": "#/directory" }
     },
     {
@@ -84,7 +108,13 @@
       "link": { "label": "Go to Contact Us", "hash": "#/contact" }
     },
     {
-      "keywords": ["about", "who runs", "who made", "team"],
+      "keywords": [
+        "about freshfind",
+        "about us",
+        "who runs",
+        "who made",
+        "team"
+      ],
       "answer": "FreshFind is a community project connecting residents with local farmers markets — more on the About Us page.",
       "link": { "label": "Go to About Us", "hash": "#/about" }
     },

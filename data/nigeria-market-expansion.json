@@ -1,0 +1,758 @@
+[
+  {
+    "state": "Abia State",
+    "markets": [
+      {
+        "id": "ariaria-aba",
+        "name": "Ariaria International Market",
+        "city": "Aba",
+        "lat": 5.116,
+        "lng": 7.367,
+        "icon": "🛍️"
+      },
+      {
+        "id": "ekeoha-aba",
+        "name": "Ekeoha Market",
+        "city": "Aba",
+        "lat": 5.117,
+        "lng": 7.375,
+        "icon": "🥬"
+      }
+    ]
+  },
+  {
+    "state": "Adamawa State",
+    "markets": [
+      {
+        "id": "mubi-main-adamawa",
+        "name": "Mubi Main Market",
+        "city": "Mubi",
+        "lat": 10.268,
+        "lng": 13.267,
+        "icon": "🌾"
+      },
+      {
+        "id": "numan-main-adamawa",
+        "name": "Numan Main Market",
+        "city": "Numan",
+        "lat": 9.463,
+        "lng": 12.033,
+        "icon": "🍅"
+      }
+    ]
+  },
+  {
+    "state": "Akwa Ibom State",
+    "markets": [
+      {
+        "id": "uruakpanandem-uyo",
+        "name": "Urua Akpan Andem Market",
+        "city": "Uyo",
+        "lat": 5.038,
+        "lng": 7.912,
+        "icon": "🥬"
+      },
+      {
+        "id": "eket-main-akwa-ibom",
+        "name": "Eket Main Market",
+        "city": "Eket",
+        "lat": 4.643,
+        "lng": 7.924,
+        "icon": "🐟"
+      }
+    ]
+  },
+  {
+    "state": "Bauchi State",
+    "markets": [
+      {
+        "id": "azare-main-bauchi",
+        "name": "Azare Main Market",
+        "city": "Azare",
+        "lat": 11.674,
+        "lng": 10.191,
+        "icon": "🌾"
+      },
+      {
+        "id": "misau-central-bauchi",
+        "name": "Misau Central Market",
+        "city": "Misau",
+        "lat": 11.315,
+        "lng": 10.467,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Bayelsa State",
+    "markets": [
+      {
+        "id": "kpansia-yenagoa",
+        "name": "Kpansia Market",
+        "city": "Yenagoa",
+        "lat": 4.93,
+        "lng": 6.259,
+        "icon": "🐟"
+      },
+      {
+        "id": "tombia-bayelsa",
+        "name": "Tombia Market",
+        "city": "Tombia",
+        "lat": 4.765,
+        "lng": 6.083,
+        "icon": "🛍️"
+      }
+    ]
+  },
+  {
+    "state": "Benue State",
+    "markets": [
+      {
+        "id": "gboko-main-benue",
+        "name": "Gboko Main Market",
+        "city": "Gboko",
+        "lat": 7.323,
+        "lng": 9.001,
+        "icon": "🍅"
+      },
+      {
+        "id": "otukpo-main-benue",
+        "name": "Otukpo Main Market",
+        "city": "Otukpo",
+        "lat": 7.192,
+        "lng": 8.134,
+        "icon": "🌽"
+      }
+    ]
+  },
+  {
+    "state": "Borno State",
+    "markets": [
+      {
+        "id": "baga-road-maiduguri",
+        "name": "Baga Road Market",
+        "city": "Maiduguri",
+        "lat": 11.846,
+        "lng": 13.153,
+        "icon": "🧺"
+      },
+      {
+        "id": "gamboru-maiduguri",
+        "name": "Gamboru Market",
+        "city": "Maiduguri",
+        "lat": 11.848,
+        "lng": 13.16,
+        "icon": "🧅"
+      }
+    ]
+  },
+  {
+    "state": "Cross River State",
+    "markets": [
+      {
+        "id": "marian-calabar",
+        "name": "Marian Market",
+        "city": "Calabar",
+        "lat": 4.967,
+        "lng": 8.326,
+        "icon": "🍍"
+      },
+      {
+        "id": "ika-ika-oqua-calabar",
+        "name": "Ika Ika Oqua Market",
+        "city": "Calabar",
+        "lat": 4.97,
+        "lng": 8.328,
+        "icon": "🐟"
+      }
+    ]
+  },
+  {
+    "state": "Delta State",
+    "markets": [
+      {
+        "id": "effurun-market-delta",
+        "name": "Effurun Market",
+        "city": "Effurun",
+        "lat": 5.556,
+        "lng": 5.784,
+        "icon": "🛍️"
+      },
+      {
+        "id": "ogwashi-uku-market",
+        "name": "Ogwashi-Uku Main Market",
+        "city": "Ogwashi-Uku",
+        "lat": 6.178,
+        "lng": 6.525,
+        "icon": "🍚"
+      }
+    ]
+  },
+  {
+    "state": "Ebonyi State",
+    "markets": [
+      {
+        "id": "eke-market-abakaliki",
+        "name": "Eke Market",
+        "city": "Abakaliki",
+        "lat": 6.267,
+        "lng": 8.099,
+        "icon": "🍚"
+      },
+      {
+        "id": "afikpo-main-ebonyi",
+        "name": "Afikpo Main Market",
+        "city": "Afikpo",
+        "lat": 5.892,
+        "lng": 7.936,
+        "icon": "🥬"
+      }
+    ]
+  },
+  {
+    "state": "Ekiti State",
+    "markets": [
+      {
+        "id": "ikere-ekiti-market",
+        "name": "Ikere-Ekiti Main Market",
+        "city": "Ikere-Ekiti",
+        "lat": 7.497,
+        "lng": 5.231,
+        "icon": "🍠"
+      },
+      {
+        "id": "ikole-ekiti-market",
+        "name": "Ikole-Ekiti Main Market",
+        "city": "Ikole-Ekiti",
+        "lat": 7.79,
+        "lng": 5.515,
+        "icon": "🌽"
+      }
+    ]
+  },
+  {
+    "state": "Gombe State",
+    "markets": [
+      {
+        "id": "billiri-market-gombe",
+        "name": "Billiri Market",
+        "city": "Billiri",
+        "lat": 9.862,
+        "lng": 11.226,
+        "icon": "🌾"
+      },
+      {
+        "id": "kaltungo-market-gombe",
+        "name": "Kaltungo Main Market",
+        "city": "Kaltungo",
+        "lat": 9.819,
+        "lng": 11.308,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Imo State",
+    "markets": [
+      {
+        "id": "nkwo-orji-imo",
+        "name": "Nkwo Orji Market",
+        "city": "Orji, Owerri",
+        "lat": 5.535,
+        "lng": 7.082,
+        "icon": "🍌"
+      },
+      {
+        "id": "mgbidi-main-imo",
+        "name": "Mgbidi Main Market",
+        "city": "Mgbidi",
+        "lat": 5.729,
+        "lng": 6.887,
+        "icon": "🥬"
+      }
+    ]
+  },
+  {
+    "state": "Jigawa State",
+    "markets": [
+      {
+        "id": "hadejia-central-jigawa",
+        "name": "Hadejia Central Market",
+        "city": "Hadejia",
+        "lat": 12.454,
+        "lng": 10.042,
+        "icon": "🌾"
+      },
+      {
+        "id": "gumel-main-jigawa",
+        "name": "Gumel Main Market",
+        "city": "Gumel",
+        "lat": 12.63,
+        "lng": 9.39,
+        "icon": "🧅"
+      }
+    ]
+  },
+  {
+    "state": "Katsina State",
+    "markets": [
+      {
+        "id": "daura-central-katsina",
+        "name": "Daura Central Market",
+        "city": "Daura",
+        "lat": 13.033,
+        "lng": 8.323,
+        "icon": "🌶️"
+      },
+      {
+        "id": "funtua-main-katsina",
+        "name": "Funtua Main Market",
+        "city": "Funtua",
+        "lat": 11.524,
+        "lng": 7.308,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Kebbi State",
+    "markets": [
+      {
+        "id": "argungu-central-kebbi",
+        "name": "Argungu Central Market",
+        "city": "Argungu",
+        "lat": 12.75,
+        "lng": 4.525,
+        "icon": "🌾"
+      },
+      {
+        "id": "yauri-main-kebbi",
+        "name": "Yauri Main Market",
+        "city": "Yauri",
+        "lat": 10.838,
+        "lng": 4.741,
+        "icon": "🐟"
+      }
+    ]
+  },
+  {
+    "state": "Kogi State",
+    "markets": [
+      {
+        "id": "anyigba-market-kogi",
+        "name": "Anyigba Market",
+        "city": "Anyigba",
+        "lat": 7.493,
+        "lng": 7.168,
+        "icon": "🛍️"
+      },
+      {
+        "id": "okene-central-kogi",
+        "name": "Okene Central Market",
+        "city": "Okene",
+        "lat": 7.551,
+        "lng": 6.236,
+        "icon": "🐟"
+      }
+    ]
+  },
+  {
+    "state": "Kwara State",
+    "markets": [
+      {
+        "id": "oja-tuntun-ilorin",
+        "name": "Oja Tuntun Market",
+        "city": "Ilorin",
+        "lat": 8.491,
+        "lng": 4.543,
+        "icon": "🥬"
+      },
+      {
+        "id": "offa-central-kwara",
+        "name": "Offa Central Market",
+        "city": "Offa",
+        "lat": 8.15,
+        "lng": 4.72,
+        "icon": "🌽"
+      }
+    ]
+  },
+  {
+    "state": "Lagos State",
+    "markets": [
+      {
+        "id": "oyingbo-lagos",
+        "name": "Oyingbo Market",
+        "city": "Ebute Metta, Lagos",
+        "lat": 6.485,
+        "lng": 3.385,
+        "icon": "🍅"
+      },
+      {
+        "id": "mushin-market-lagos",
+        "name": "Mushin Market",
+        "city": "Mushin, Lagos",
+        "lat": 6.529,
+        "lng": 3.35,
+        "icon": "🌶️"
+      }
+    ]
+  },
+  {
+    "state": "Nasarawa State",
+    "markets": [
+      {
+        "id": "keffi-main-nasarawa",
+        "name": "Keffi Main Market",
+        "city": "Keffi",
+        "lat": 8.847,
+        "lng": 7.873,
+        "icon": "🧺"
+      },
+      {
+        "id": "akwanaga-market-nasarawa",
+        "name": "Akwanga Main Market",
+        "city": "Akwanga",
+        "lat": 8.91,
+        "lng": 8.407,
+        "icon": "🌽"
+      }
+    ]
+  },
+  {
+    "state": "Niger State",
+    "markets": [
+      {
+        "id": "minna-central-niger",
+        "name": "Minna Central Market",
+        "city": "Minna",
+        "lat": 9.613,
+        "lng": 6.556,
+        "icon": "🌾"
+      },
+      {
+        "id": "suleja-modern-niger",
+        "name": "Suleja Modern Market",
+        "city": "Suleja",
+        "lat": 9.181,
+        "lng": 7.18,
+        "icon": "🛍️"
+      }
+    ]
+  },
+  {
+    "state": "Ogun State",
+    "markets": [
+      {
+        "id": "lafenwa-abeokuta",
+        "name": "Lafenwa Market",
+        "city": "Abeokuta",
+        "lat": 7.165,
+        "lng": 3.34,
+        "icon": "🍍"
+      },
+      {
+        "id": "itoku-abeokuta",
+        "name": "Itoku Market",
+        "city": "Abeokuta",
+        "lat": 7.155,
+        "lng": 3.36,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Ondo State",
+    "markets": [
+      {
+        "id": "owo-main-ondo",
+        "name": "Owo Main Market",
+        "city": "Owo",
+        "lat": 7.196,
+        "lng": 5.587,
+        "icon": "🥬"
+      },
+      {
+        "id": "okitipupa-main-ondo",
+        "name": "Okitipupa Main Market",
+        "city": "Okitipupa",
+        "lat": 6.504,
+        "lng": 4.781,
+        "icon": "🍍"
+      }
+    ]
+  },
+  {
+    "state": "Osun State",
+    "markets": [
+      {
+        "id": "ilesa-main-osun",
+        "name": "Ilesa Main Market",
+        "city": "Ilesa",
+        "lat": 7.628,
+        "lng": 4.741,
+        "icon": "🍠"
+      },
+      {
+        "id": "iwo-main-osun",
+        "name": "Iwo Main Market",
+        "city": "Iwo",
+        "lat": 7.629,
+        "lng": 4.187,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Oyo State",
+    "markets": [
+      {
+        "id": "oje-ibadan",
+        "name": "Oje Market",
+        "city": "Ibadan",
+        "lat": 7.399,
+        "lng": 3.911,
+        "icon": "🛍️"
+      },
+      {
+        "id": "oja-oba-ibadan",
+        "name": "Oja Oba Market",
+        "city": "Ibadan",
+        "lat": 7.377,
+        "lng": 3.901,
+        "icon": "🍅"
+      }
+    ]
+  },
+  {
+    "state": "Plateau State",
+    "markets": [
+      {
+        "id": "farin-gada-jos",
+        "name": "Farin Gada Market",
+        "city": "Jos",
+        "lat": 9.935,
+        "lng": 8.887,
+        "icon": "🥔"
+      },
+      {
+        "id": "bukuru-market-plateau",
+        "name": "Bukuru Market",
+        "city": "Bukuru",
+        "lat": 9.797,
+        "lng": 8.866,
+        "icon": "🥬"
+      }
+    ]
+  },
+  {
+    "state": "Sokoto State",
+    "markets": [
+      {
+        "id": "kasuwar-daji-sokoto",
+        "name": "Kasuwar Daji Market",
+        "city": "Sokoto",
+        "lat": 13.056,
+        "lng": 5.233,
+        "icon": "🌾"
+      },
+      {
+        "id": "illela-central-sokoto",
+        "name": "Illela Central Market",
+        "city": "Illela",
+        "lat": 13.731,
+        "lng": 5.297,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Taraba State",
+    "markets": [
+      {
+        "id": "wukari-main-taraba",
+        "name": "Wukari Main Market",
+        "city": "Wukari",
+        "lat": 7.85,
+        "lng": 9.783,
+        "icon": "🌽"
+      },
+      {
+        "id": "bali-main-taraba",
+        "name": "Bali Main Market",
+        "city": "Bali",
+        "lat": 7.85,
+        "lng": 10.967,
+        "icon": "🥭"
+      }
+    ]
+  },
+  {
+    "state": "Yobe State",
+    "markets": [
+      {
+        "id": "damaturu-main-yobe",
+        "name": "Damaturu Main Market",
+        "city": "Damaturu",
+        "lat": 11.747,
+        "lng": 11.966,
+        "icon": "🧅"
+      },
+      {
+        "id": "gashua-main-yobe",
+        "name": "Gashua Main Market",
+        "city": "Gashua",
+        "lat": 12.87,
+        "lng": 11.05,
+        "icon": "🌾"
+      }
+    ]
+  },
+  {
+    "state": "Zamfara State",
+    "markets": [
+      {
+        "id": "kaura-namoda-zamfara",
+        "name": "Kaura Namoda Central Market",
+        "city": "Kaura Namoda",
+        "lat": 12.596,
+        "lng": 6.586,
+        "icon": "🧺"
+      },
+      {
+        "id": "talata-mafara-zamfara",
+        "name": "Talata Mafara Market",
+        "city": "Talata Mafara",
+        "lat": 12.57,
+        "lng": 6.067,
+        "icon": "🌶️"
+      }
+    ]
+  },
+  {
+    "state": "FCT",
+    "markets": [
+      {
+        "id": "garki-modern-fct",
+        "name": "Garki Modern Market",
+        "city": "Garki, Abuja",
+        "lat": 9.025,
+        "lng": 7.49,
+        "icon": "🧺"
+      },
+      {
+        "id": "karmo-market-fct",
+        "name": "Karmo Market",
+        "city": "Karmo, Abuja",
+        "lat": 9.109,
+        "lng": 7.393,
+        "icon": "🛍️"
+      }
+    ]
+  },
+  {
+    "state": "Enugu State",
+    "markets": [
+      {
+        "id": "new-market-enugu",
+        "name": "New Market",
+        "city": "Enugu",
+        "lat": 6.433,
+        "lng": 7.495,
+        "icon": "🥬"
+      },
+      {
+        "id": "kenyatta-market-enugu",
+        "name": "Kenyatta Market",
+        "city": "Enugu",
+        "lat": 6.446,
+        "lng": 7.507,
+        "icon": "🛍️"
+      }
+    ]
+  },
+  {
+    "state": "Anambra State",
+    "markets": [
+      {
+        "id": "eke-awka-market",
+        "name": "Eke Awka Market",
+        "city": "Awka",
+        "lat": 6.211,
+        "lng": 7.075,
+        "icon": "🌾"
+      },
+      {
+        "id": "nkwo-nnewi-market",
+        "name": "Nkwo Nnewi Market",
+        "city": "Nnewi",
+        "lat": 6.017,
+        "lng": 6.914,
+        "icon": "🧺"
+      }
+    ]
+  },
+  {
+    "state": "Kano State",
+    "markets": [
+      {
+        "id": "dawanau-kano",
+        "name": "Dawanau International Grains Market",
+        "city": "Kano",
+        "lat": 12.105,
+        "lng": 8.35,
+        "icon": "🌾"
+      },
+      {
+        "id": "sabon-gari-kano",
+        "name": "Sabon Gari Market",
+        "city": "Kano",
+        "lat": 12.007,
+        "lng": 8.543,
+        "icon": "🧅"
+      }
+    ]
+  },
+  {
+    "state": "Kaduna State",
+    "markets": [
+      {
+        "id": "kawo-market-kaduna",
+        "name": "Kawo Market",
+        "city": "Kaduna",
+        "lat": 10.588,
+        "lng": 7.444,
+        "icon": "🧺"
+      },
+      {
+        "id": "kasuwan-barci-kaduna",
+        "name": "Kasuwan Barci Market",
+        "city": "Kaduna",
+        "lat": 10.523,
+        "lng": 7.438,
+        "icon": "🥬"
+      }
+    ]
+  },
+  {
+    "state": "Edo State",
+    "markets": [
+      {
+        "id": "uselu-market-benin",
+        "name": "Uselu Market",
+        "city": "Benin City",
+        "lat": 6.319,
+        "lng": 5.627,
+        "icon": "🍌"
+      },
+      {
+        "id": "oba-market-benin",
+        "name": "Oba Market",
+        "city": "Benin City",
+        "lat": 6.336,
+        "lng": 5.622,
+        "icon": "🥬"
+      }
+    ]
+  }
+]
