@@ -260,14 +260,16 @@ async function loadData() {
         ),
       })),
   );
-  const additionalNigeriaMarkets = nigeriaMarketExpansionExtra.map((market) => ({
-    ...market,
-    address: `${market.name}, ${market.city}, ${market.state}, Nigeria`,
-    hoursNote: "Trading days and hours vary by trader; confirm locally.",
-    description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
-    country: "Nigeria",
-    produce: marketProduceProfile(market.state, market.profile),
-  }));
+  const additionalNigeriaMarkets = nigeriaMarketExpansionExtra.map(
+    (market) => ({
+      ...market,
+      address: `${market.name}, ${market.city}, ${market.state}, Nigeria`,
+      hoursNote: "Trading days and hours vary by trader; confirm locally.",
+      description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+      country: "Nigeria",
+      produce: marketProduceProfile(market.state, market.profile),
+    }),
+  );
   const furtherNigeriaMarkets = nigeriaMarketExpansionFurther.map((market) => ({
     ...market,
     address: `${market.name}, ${market.city}, ${market.state}, Nigeria`,
@@ -280,11 +282,11 @@ async function loadData() {
     ...internationalMarkets,
     ...internationalMarketExpansion,
   ].map((market) => ({
-      ...market,
-      address: `${market.name}, ${market.city}, ${market.state}, ${market.country}`,
-      hoursNote: "Trading days and hours vary by trader; confirm locally.",
-      description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
-    }));
+    ...market,
+    address: `${market.name}, ${market.city}, ${market.state}, ${market.country}`,
+    hoursNote: "Trading days and hours vary by trader; confirm locally.",
+    description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+  }));
   state.markets = fillRegionalProduceCoverage(
     [
       ...markets,
