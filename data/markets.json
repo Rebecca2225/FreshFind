@@ -429,6 +429,7 @@
       "pear",
       "citrus",
       "avocado",
+      "banana",
       "potatoes",
       "cabbage",
       "tomatoes",
@@ -459,7 +460,8 @@
       "cabbage",
       "tomatoes",
       "onions",
-      "pineapple"
+      "pineapple",
+      "banana"
     ]
   }
 ]

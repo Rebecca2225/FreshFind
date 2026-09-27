@@ -220,13 +220,14 @@ const state = {
 
 /* ---------------- Data loading ---------------- */
 async function loadData() {
-  const [markets, produce, chatbot, nigeriaMarkets, marketExpansion] =
+  const [markets, produce, chatbot, nigeriaMarkets, marketExpansion, internationalMarkets] =
     await Promise.all([
       fetch("data/markets.json").then((r) => r.json()),
       fetch("data/produce.json").then((r) => r.json()),
       fetch("data/chatbot.json").then((r) => r.json()),
       fetch("data/nigeria-markets.json").then((r) => r.json()),
       fetch("data/nigeria-market-expansion.json").then((r) => r.json()),
+      fetch("data/international-markets.json").then((r) => r.json()),
     ]);
   const listedNigeriaMarkets = nigeriaMarkets.map((market) => ({
     ...market,
@@ -247,8 +248,19 @@ async function loadData() {
         ),
       })),
   );
+  const additionalInternationalMarkets = internationalMarkets.map((market) => ({
+    ...market,
+    address: `${market.name}, ${market.city}, ${market.state}, ${market.country}`,
+    hoursNote: "Trading days and hours vary by trader; confirm locally.",
+    description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+  }));
   state.markets = fillStateProduceCoverage(
-    [...markets, ...listedNigeriaMarkets, ...additionalMarkets],
+    [
+      ...markets,
+      ...listedNigeriaMarkets,
+      ...additionalMarkets,
+      ...additionalInternationalMarkets,
+    ],
     produce,
   );
   state.produce = produce;
@@ -435,6 +447,7 @@ function exportBookmarks() {
 function marketCardHtml(market, opts = {}) {
   const scheduled = hasSchedule(market);
   const open = isOpenNow(market);
+  const listedProduce = produceForMarket(market);
   return `<article class="card">
     <div class="card-top">
       <span class="card-icon" aria-hidden="true">${market.icon}</span>
@@ -447,6 +460,7 @@ function marketCardHtml(market, opts = {}) {
         ${scheduled ? `<span class="tag">${market.days.join(", ")}</span><span class="tag">${formatTime(market.openTime)}–${formatTime(market.closeTime)}</span>${open ? '<span class="tag open-now">Open now</span>' : ""}` : `<span class="tag">Hours vary by trader</span>`}
       </div>
       <p style="font-size:0.88rem;margin-top:4px;">${escapeHtml(market.description)}</p>
+      ${opts.showProduce ? `<div class="market-produce"><span class="muted">Listed produce (${listedProduce.length})</span><div class="tag-row">${listedProduce.map((item) => `<span class="tag">${escapeHtml(item.name)}</span>`).join("")}</div></div>` : ""}
       ${opts.distance != null ? `<span class="muted">${opts.distance.toFixed(1)} km away</span>` : ""}
     </div>
     <div class="card-footer">
@@ -490,7 +504,7 @@ function renderHome() {
     <div class="hero-chalk">
       <h3>Find a Market</h3>
       <form class="find-form" onsubmit="handleQuickFind(event)">
-        <select id="qfCountry" aria-label="Filter by country">
+        <select id="qfCountry" aria-label="Filter by country" onchange="updateQuickFindStates()">
           <option value="">Any country</option>
           ${countries.map((country) => `<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`).join("")}
         </select>
@@ -546,6 +560,27 @@ function handleQuickFind(e) {
   if (produce) params.set("produce", produce);
   location.hash =
     "#/directory" + (params.toString() ? "?" + params.toString() : "");
+}
+
+function updateQuickFindStates() {
+  const country = document.getElementById("qfCountry").value;
+  const stateSelect = document.getElementById("qfState");
+  const regions = [
+    ...new Map(
+      state.markets
+        .filter((market) => !country || marketCountry(market) === country)
+        .map((market) => [market.state, market]),
+    ).values(),
+  ].sort((a, b) => a.state.localeCompare(b.state));
+
+  stateSelect.innerHTML =
+    '<option value="">Any state or region</option>' +
+    regions
+      .map(
+        (market) =>
+          `<option value="${escapeHtml(market.state)}">${escapeHtml(market.state)}, ${escapeHtml(marketCountry(market))}</option>`,
+      )
+      .join("");
 }
 
 function renderDirectory(query) {
@@ -619,7 +654,7 @@ function renderDirectory(query) {
   <p class="result-count">${list.length} market${list.length === 1 ? "" : "s"} found</p>
   ${
     list.length
-      ? `<div class="grid">${list.map((m) => marketCardHtml(m, { distance: distances[m.id] })).join("")}</div>`
+      ? `<div class="grid">${list.map((m) => marketCardHtml(m, { distance: distances[m.id], showProduce: true })).join("")}</div>`
       : `<div class="empty-state"><div class="big">🧺</div><p>No markets match those filters. Try widening your search.</p></div>`
   }
   `;

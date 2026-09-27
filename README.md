@@ -38,6 +38,7 @@ freshfind/
 ├── data/markets.json     Selected markets in Nigeria, Ghana, Kenya, and South Africa
 ├── data/nigeria-markets.json  Markets filling state coverage gaps
 ├── data/nigeria-market-expansion.json  Additional markets across Nigerian states
+├── data/international-markets.json  Representative markets across Ghana, Kenya, and South Africa
 ├── data/produce.json     33 foods and fruits with category/availability/description
 └── data/chatbot.json     Pre-scripted rule-based Q&A dataset for the chatbot
 ```
@@ -66,8 +67,9 @@ freshfind/
 
 ## Assumptions made
 
-- Listings include markets across all 36 Nigerian states and the FCT, plus
-  selected markets in Ghana, Kenya, and South Africa. Each market has a
+- Listings include markets across all 36 Nigerian states and the FCT, Ghana's
+  16 regions, Kenya's 47 counties, and South Africa's 9 provinces. International
+  coverage uses representative markets, not a complete registry. Each market has a
   representative produce list, and produce searches show markets listing that
   item. Listings are not verified live inventories; stock, prices, and trader
   hours vary, so confirm locally before travelling. Coordinates are approximate
