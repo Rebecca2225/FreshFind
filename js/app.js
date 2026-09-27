@@ -177,29 +177,29 @@ function marketProduceProfile(stateName, profile) {
   return REGIONAL_MARKET_PRODUCE[region][profile];
 }
 
-function fillStateProduceCoverage(markets, produce) {
+function fillRegionalProduceCoverage(markets, produce) {
   const listings = markets.map((market) => ({
     ...market,
     produce: [...(market.produce || [])],
   }));
   const byState = new Map();
 
-  listings
-    .filter((market) => marketCountry(market) === "Nigeria")
-    .forEach((market) => {
-      const group = byState.get(market.state) || [];
-      group.push(market);
-      byState.set(market.state, group);
-    });
+  listings.forEach((market) => {
+    const country = marketCountry(market);
+    const key = `${country}\u0000${market.state}`;
+    const regionMarkets = byState.get(key) || [];
+    regionMarkets.push(market);
+    byState.set(key, regionMarkets);
+  });
 
-  byState.forEach((stateMarkets) => {
+  byState.forEach((regionMarkets) => {
     const represented = new Set(
-      stateMarkets.flatMap((market) => market.produce),
+      regionMarkets.flatMap((market) => market.produce),
     );
     const missing = produce.filter((item) => !represented.has(item.id));
 
     missing.forEach((item) => {
-      const target = stateMarkets.reduce((shortest, market) =>
+      const target = regionMarkets.reduce((shortest, market) =>
         market.produce.length < shortest.produce.length ? market : shortest,
       );
       target.produce.push(item.id);
@@ -220,15 +220,27 @@ const state = {
 
 /* ---------------- Data loading ---------------- */
 async function loadData() {
-  const [markets, produce, chatbot, nigeriaMarkets, marketExpansion, internationalMarkets] =
-    await Promise.all([
-      fetch("data/markets.json").then((r) => r.json()),
-      fetch("data/produce.json").then((r) => r.json()),
-      fetch("data/chatbot.json").then((r) => r.json()),
-      fetch("data/nigeria-markets.json").then((r) => r.json()),
-      fetch("data/nigeria-market-expansion.json").then((r) => r.json()),
-      fetch("data/international-markets.json").then((r) => r.json()),
-    ]);
+  const [
+    markets,
+    produce,
+    chatbot,
+    nigeriaMarkets,
+    marketExpansion,
+    nigeriaMarketExpansionExtra,
+    nigeriaMarketExpansionFurther,
+    internationalMarkets,
+    internationalMarketExpansion,
+  ] = await Promise.all([
+    fetch("data/markets.json").then((r) => r.json()),
+    fetch("data/produce.json").then((r) => r.json()),
+    fetch("data/chatbot.json").then((r) => r.json()),
+    fetch("data/nigeria-markets.json").then((r) => r.json()),
+    fetch("data/nigeria-market-expansion.json").then((r) => r.json()),
+    fetch("data/nigeria-market-expansion-extra.json").then((r) => r.json()),
+    fetch("data/nigeria-market-expansion-further.json").then((r) => r.json()),
+    fetch("data/international-markets.json").then((r) => r.json()),
+    fetch("data/international-market-expansion.json").then((r) => r.json()),
+  ]);
   const listedNigeriaMarkets = nigeriaMarkets.map((market) => ({
     ...market,
     produce: marketProduceProfile(market.state, "fresh"),
@@ -248,17 +260,38 @@ async function loadData() {
         ),
       })),
   );
-  const additionalInternationalMarkets = internationalMarkets.map((market) => ({
+  const additionalNigeriaMarkets = nigeriaMarketExpansionExtra.map((market) => ({
     ...market,
-    address: `${market.name}, ${market.city}, ${market.state}, ${market.country}`,
+    address: `${market.name}, ${market.city}, ${market.state}, Nigeria`,
     hoursNote: "Trading days and hours vary by trader; confirm locally.",
     description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+    country: "Nigeria",
+    produce: marketProduceProfile(market.state, market.profile),
   }));
-  state.markets = fillStateProduceCoverage(
+  const furtherNigeriaMarkets = nigeriaMarketExpansionFurther.map((market) => ({
+    ...market,
+    address: `${market.name}, ${market.city}, ${market.state}, Nigeria`,
+    hoursNote: "Trading days and hours vary by trader; confirm locally.",
+    description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+    country: "Nigeria",
+    produce: marketProduceProfile(market.state, market.profile),
+  }));
+  const additionalInternationalMarkets = [
+    ...internationalMarkets,
+    ...internationalMarketExpansion,
+  ].map((market) => ({
+      ...market,
+      address: `${market.name}, ${market.city}, ${market.state}, ${market.country}`,
+      hoursNote: "Trading days and hours vary by trader; confirm locally.",
+      description: `A representative produce-market listing for ${market.city}. Listed goods are a guide, not live vendor inventory; confirm locally.`,
+    }));
+  state.markets = fillRegionalProduceCoverage(
     [
       ...markets,
       ...listedNigeriaMarkets,
       ...additionalMarkets,
+      ...additionalNigeriaMarkets,
+      ...furtherNigeriaMarkets,
       ...additionalInternationalMarkets,
     ],
     produce,

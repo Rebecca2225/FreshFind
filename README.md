@@ -38,7 +38,10 @@ freshfind/
 ├── data/markets.json     Selected markets in Nigeria, Ghana, Kenya, and South Africa
 ├── data/nigeria-markets.json  Markets filling state coverage gaps
 ├── data/nigeria-market-expansion.json  Additional markets across Nigerian states
+├── data/nigeria-market-expansion-extra.json  Further markets with regional produce profiles
+├── data/nigeria-market-expansion-further.json  Additional Nigerian market listings
 ├── data/international-markets.json  Representative markets across Ghana, Kenya, and South Africa
+├── data/international-market-expansion.json  Additional market listings for international regions
 ├── data/produce.json     33 foods and fruits with category/availability/description
 └── data/chatbot.json     Pre-scripted rule-based Q&A dataset for the chatbot
 ```
